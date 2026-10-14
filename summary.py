@@ -6,6 +6,8 @@ filename=sys.argv[1] # Get the log in variable filename # the second thing after
                      # that is 0th index as the value then 1st index value is mylog.log which is the log file name and 
                      # it is stored in the variable filename
 
+n=int(sys.argv[2])
+
 with open(filename) as f: #Open the Log file
     lines = f.readlines() # Read all lines and store it as list
 
@@ -15,10 +17,12 @@ counts = Counter() # Create an empty counter
 for line in lines: # Process each line
     fields = line.split() # Split line into fields and store it as lists
     # we are using 7th as the thing we need is on the 8th postion so by indexing it would be on 7th ( comment by me )
-    if len(fields) > 7: 
-        key = fields[7]
+    if len(fields) > n: 
+        key = fields[n]
         counts[key] += 1
 
 print("Top 5 most recurring fields at the 7th aka 8th postions are :--> ")
 for item, n in counts.most_common(5):
     print(item, n)
+
+#if we want to create the same for a linux user or a global code we can ask for input from the user and then we can use that input to get the value of the field we want to check for the most recurring fields in the log file
